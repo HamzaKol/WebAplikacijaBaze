@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Unos Podataka za Izvještaj</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light">
+
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/radni_nalozi.html">Izvještaj za Radne Naloge</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/UnesiPeriod.html">Unos parametara za izvještaj</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/Vozilo.html">Forma za API endpoint za Vozilo</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/Radovi.html">Unos Radnog Naloga za Izvještaj Radova</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+<form id="myForm" class="form-control">
+
+    <p>Upisite sifru vozila:</p>
+    <p><input type = "text" name = "sifra_vozila" placeholder="Sifra Vozila"/></p>
+    <p>Upisite posljednji registarski broj vozila:</p>
+    <p><input type = "text" name = "posljednji_registarski_broj_vozila" placeholder="Posljednji Registarski Broj:"/></p>
+    <p>Upisite sifru modela vozila:</p>
+    <p><input type = "text" name = "sifra_modela_vozila" placeholder="Sifra Modela Vozila"/></p>
+    <p>Odaberite model vozila:</p>
+    <select name = "naziv_vozila">
+    <option></option>
+    {%for v in lista%}
+    <option>{{ v[0] }}</option>
+    {% endfor %}
+    </select>
+
+    <br>
+    <br>
+    <button type="button" id="getButton" onclick="handleGet()">Prikaži</button>
+
+    <button type="submit" id="submitButton" onclick="handlePost()">Spremi</button>
+
+    <button type="button" id="deleteButton" onclick="handleDelete()">Obriši</button>
+</form>
+
+<script>
+
+function handlePost() {
+    if (confirm("Jeste li sigurni da želite unijeti novi element?")) {
+        alert("Podaci će biti dodani.");
+        document.getElementById('myForm').action = "http://localhost:5000/IspisiVozilo.html/Dodaj"
+        document.getElementById('myForm').method = 'post';
+        document.getElementById('myForm').submit();
+    }
+}
+
+function handleDelete() {
+    if (confirm("Jeste li sigurni da želite obrisati?")) {
+        alert("Podaci će biti obrisani.");
+        document.getElementById('myForm').action = "http://localhost:5000/IspisiVozilo.html/Obrisi"
+        document.getElementById('myForm').method = 'delete';
+        document.getElementById('myForm').submit();
+    }
+}
+function handleGet() {
+    alert("Podaci će biti dohvaćeni.");
+    document.getElementById('myForm').action = "http://localhost:5000/IspisiVozilo.html/Prikazi"
+    document.getElementById('myForm').method = 'get';
+    document.getElementById('myForm').submit();
+}
+</script>
+</body>
+</html>

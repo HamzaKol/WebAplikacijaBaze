@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Unos Podataka za Izvještaj</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light">
+
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/radni_nalozi.html">Izvještaj za Radne Naloge</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/UnesiPeriod.html">Unos parametara za izvještaj</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/Vozilo.html">Forma za API endpoint za Vozilo</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/Radovi.html">Unos Radnog Naloga za Izvještaj Radova</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+    <form action = "http://localhost:5000/IzvjestajRadovi.html" method = "get" class="form-control">
+         <p>Upisite broj radnog naloga:</p>
+        <select name = "broj_radnog_naloga">
+            {%for v in lista%}
+            <option>{{ v[0] }}</option>
+            {% endfor %}
+        </select>
+         <p><input type = "submit" value = "Pošalji" /></p>
+    </form>
+</body>
+</html>
